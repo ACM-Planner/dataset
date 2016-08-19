@@ -1,0 +1,164 @@
+@prefix : <http://cocke.ing.puc.cl/ontologies/v1#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://cocke.ing.puc.cl/ontologies/v1> .
+
+<http://cocke.ing.puc.cl/ontologies/v1> rdf:type owl:Ontology ;
+owl:imports <http://xmlns.com/foaf/0.1/> .
+
+#################################################################
+#
+#    Object Properties
+#
+#################################################################
+
+
+###  http://cocke.ing.puc.cl/ontologies/v1#belongs_to
+:belongs_to rdf:type owl:ObjectProperty ;
+            rdfs:label "belongs to" ;
+            rdfs:comment "A Section belongs_to a Course" ;
+            rdfs:range :Course ;
+            rdfs:domain :Section .
+
+###  http://cocke.ing.puc.cl/ontologies/v1#is_imparted
+:is_imparted rdf:type owl:ObjectProperty ;
+             rdfs:label "is imparted" ;
+             rdfs:comment "A Section is_imparted at Schedule" ;
+             rdfs:range :Schedule ;
+             rdfs:domain :Section .
+
+###  http://cocke.ing.puc.cl/ontologies/v1#teaches
+:teaches rdf:type owl:ObjectProperty ;
+         rdfs:label "teaches" ;
+         rdfs:comment "A professor teaches a Section" ;
+         rdfs:domain :Professor ;
+         rdfs:range :Section .
+         
+###  http://cocke.ing.puc.cl/ontologies/v1#equivalence
+:equivalence rdf:type owl:ObjectProperty ;
+        rdfs:label "equivalence" ;
+        rdfs:comment "A course equivalence a Course" ;
+        rdfs:domain :Course ;
+        rdfs:range :Course .
+
+###  http://cocke.ing.puc.cl/ontologies/v1#requires
+:requires rdf:type owl:ObjectProperty ;
+       rdfs:label "Requires" ;
+       rdfs:comment "A course requires a Course" ;
+       rdfs:domain :Course ;
+       rdfs:range :White .
+
+###  http://cocke.ing.puc.cl/ontologies/v1#and
+:and rdf:type owl:ObjectProperty ;
+        rdfs:label "AND" ;
+        rdfs:comment "A course requires a Course AND this Course" ;
+        rdfs:domain :White ;
+        rdfs:range :Course .
+
+#################################################################
+#
+#    Data properties
+#
+#################################################################
+
+###  http://cocke.ing.puc.cl/ontologies/v1#NRC
+:NRC rdf:type owl:DatatypeProperty ;
+     rdfs:label "NRC" ;
+     rdfs:comment "A NRC for Section" ;
+     rdfs:domain :Section ;
+     rdfs:range rdfs:Literal .
+
+###  http://cocke.ing.puc.cl/ontologies/v1#credits
+:credits rdf:type owl:DatatypeProperty ;
+         rdfs:label "credicts" ;
+         rdfs:comment "Credicts of a course" ;
+         rdfs:domain :Course ;
+         rdfs:range rdfs:Literal .
+
+###  http://cocke.ing.puc.cl/ontologies/v1#day
+:day rdf:type owl:DatatypeProperty ;
+     rdfs:label "day" ;
+     rdfs:comment "A day of the week for a Schedule" ;
+     rdfs:domain :Schedule ;
+     rdfs:range rdfs:Literal .
+
+###  http://cocke.ing.puc.cl/ontologies/v1#faculty
+:faculty rdf:type owl:DatatypeProperty ;
+         rdfs:label "faculty" ;
+         rdfs:comment "A faculty for a course" ;
+         rdfs:domain :Course ;
+         rdfs:range rdfs:Literal .
+
+###  http://cocke.ing.puc.cl/ontologies/v1#initial
+:initial rdf:type owl:DatatypeProperty ;
+         rdfs:label "initial" ;
+         rdfs:comment "A initial for a course" ;
+         rdfs:domain :Course ;
+         rdfs:range rdfs:Literal .
+
+###  http://cocke.ing.puc.cl/ontologies/v1#module
+:module rdf:type owl:DatatypeProperty ;
+        rdfs:label "module" ;
+        rdfs:comment "A module for a Schedule" ;
+        rdfs:domain :Schedule ;
+        rdfs:range rdfs:Literal .
+
+###  http://cocke.ing.puc.cl/ontologies/v1#number
+:number rdf:type owl:DatatypeProperty ;
+        rdfs:label "number" ;
+        rdfs:comment "A number for Section" ;
+        rdfs:domain :Section ;
+        rdfs:range rdfs:Literal .
+
+###  http://cocke.ing.puc.cl/ontologies/v1#type
+:type rdf:type owl:DatatypeProperty ;
+      rdfs:label "type" ;
+      rdfs:comment "A type for a Schedule (CAT, LAB...)" ;
+      rdfs:domain :Schedule ;
+      rdfs:range rdfs:Literal .
+
+###  http://cocke.ing.puc.cl/ontologies/v1#vacants
+:vacants rdf:type owl:DatatypeProperty ;
+         rdfs:label "vacants" ;
+         rdfs:comment "A vacant for Section" ;
+         rdfs:domain :Section ;
+         rdfs:range rdfs:Literal .
+
+#################################################################
+#
+#    Classes
+#
+#################################################################
+
+###  http://cocke.ing.puc.cl/ontologies/v1#Course
+:Course rdf:type owl:Class ;
+        rdfs:label "Course" ;
+        rdfs:subClassOf <http://xmlns.com/foaf/0.1/Agent> ;
+        rdfs:comment "A course." .
+
+###  http://cocke.ing.puc.cl/ontologies/v1#Professor
+:Professor rdf:type owl:Class ;
+           rdfs:label "Professor" ;
+           rdfs:subClassOf <http://xmlns.com/foaf/0.1/Person> ;
+           rdfs:comment "A professor" .
+
+###  http://cocke.ing.puc.cl/ontologies/v1#Schedule
+:Schedule rdf:type owl:Class ;
+          rdfs:label "Schedule" ;
+          rdfs:subClassOf <http://xmlns.com/foaf/0.1/Agent> ;
+          rdfs:comment "A schedule for a Section" .
+
+###  http://cocke.ing.puc.cl/ontologies/v1#Section
+:Section rdf:type owl:Class ;
+         rdfs:label "Section" ;
+         rdfs:subClassOf <http://xmlns.com/foaf/0.1/Agent> ;
+         rdfs:comment "A Section of a Course" .
+         
+###  http://cocke.ing.puc.cl/ontologies/v1#White
+:White rdf:type owl:Class ;
+         rdfs:label "White" ;
+         rdfs:subClassOf <http://xmlns.com/foaf/0.1/Agent> ;
+         rdfs:comment "White node for modeling requirements" .
